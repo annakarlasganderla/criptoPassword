@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    border: 1px solid #61dbfb;
+    padding: 3rem;
+    gap: 2rem;
+}
+
+.subscribe {
+    background-color: #61dbfb;
+    color: #242424;
+    border: none;
+    padding: 1rem 4rem;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all ease 0.2s;
+    font-weight: bold;
+}
+
+.subscribe:hover {
+    background-color: #61dcfb64;
+}
+
+.subscribe:active {
+    background-color: #61dcfb24;
+}
+
+p {
+    color: white;
+}
+
+a {
+    color: #61dbfb;
+    text-decoration: none;
+    background-color: none;
+}
+
+.back {
+    background-color: #242424;
+    color: #61dbfb;
+    border: 1px solid #61dbfb;
+}
+
+.back-link {
+    background-color: none;
+    text-decoration: none;
+    
+}

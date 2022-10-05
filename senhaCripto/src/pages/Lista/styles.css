@@ -11,10 +11,10 @@ table {
 }
 
 table thead th {
-    background: #2424241c;  
+    background: #000;  
     font-weight: normal;
     padding: 1rem 2rem;
-    color: white;
+    color: #fff;
     text-align: left;
 }
 
@@ -30,6 +30,11 @@ table tbody tr {
 
 table tr:hover {
     opacity: 1;
+}
+
+.icons {
+    display: flex;
+    gap: 1rem;
 }
 
 .subscribe {
@@ -50,4 +55,31 @@ table tr:hover {
 .subscribe:active {
     background-color: #61dcfb24;
 }
+
+.buttonArea {
+    display: flex;
+    gap: 2rem;
+}
+
+.modalContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    background-color: white;
+    border-radius: 1.3rem;
+}
+
+.modalContent {
+   display: flex;
+   flex-direction: column;
+   row-gap: 1rem;
+}
+
+.cancel {
+    background-color: #242424;
+    color: #61dbfb;
+    border: 1px solid #61dbfb;
+}
+
 

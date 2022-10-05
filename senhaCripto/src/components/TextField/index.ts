@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 
 export const StyledTextField = styled(TextField)({
     '& label': {
-        color: 'white',
+        color: '#000',
     },
     '& label.Mui-focused': {
         color: '#61dbfb',
@@ -12,11 +12,12 @@ export const StyledTextField = styled(TextField)({
 
     '& .MuiOutlinedInput-root': {
         '& fieldset': {
-            borderColor: 'white',
+            borderColor: '#000',
         },
-
+        
         '&.Mui-focused fieldset': {
             borderColor: '#61dbfb',
+            
         },
     },
 });

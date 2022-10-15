@@ -1,14 +1,12 @@
 import './styles.css';
-import { LoginTypes } from '../Login/login.types';
-import IconButton from '@mui/material/IconButton';
-import { BsTrash } from 'react-icons/bs';
-import { useState } from 'react';
-import { Api } from '../../services/api';
+import { useEffect, useState } from 'react';
 import Modal from '@mui/material/Modal';
 import { StyledTextField } from '../../components/TextField';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { RiEditLine } from 'react-icons/ri';
 import { AiOutlineEye } from 'react-icons/ai';
+import { LoginTypes } from '../../utils/login.types';
+import { api } from '../../services/api';
 export function Lista() {
 
     const users = [
@@ -17,15 +15,22 @@ export function Lista() {
         { id: 3, password: '445dadsaa_sdde44' },
     ]
 
-    const [listLogin, setListLogin] = useState(users);
+    const [listLogin, setListLogin] = useState<LoginTypes[]>([]);
     const [openModal, setOpenModal] = useState(false);
+
+    const getPasswords = () => {
+        api.get('api/users/datas').then((response) => setListLogin(response.data)).catch((error) => console.error(error));
+    }
+
+    useEffect(() => {
+        getPasswords();
+    }, [])
 
     return (
         <div className='container'>
             <table>
                 <thead>
                     <th>ID</th>
-
                     <th>Senha</th>
                     <th>Opções</th>
                 </thead>
@@ -41,7 +46,6 @@ export function Lista() {
                                     <RiEditLine style={{ cursor: 'pointer' }} />
                                     <AiOutlineEye style={{ cursor: 'pointer' }} />
                                 </div>
-
                             </td>
                         </tr>
                     ))}
@@ -54,7 +58,7 @@ export function Lista() {
                         <StyledTextField label="Nova senha" />
 
                         <button>
-                            Cadastrar
+                            Salvar
                         </button>
                         <button className='cancel' onClick={() => setOpenModal(false)}>
                             Cancelar
@@ -66,7 +70,7 @@ export function Lista() {
 
             <div className='buttonArea'>
                 <button className='subscribe' onClick={() => window.location.href = "login"}>Sair</button>
-                <button className='subscribe' onClick={() => setOpenModal(true)}>Cadastro</button>
+                <button className='subscribe' onClick={() => setOpenModal(true)}>Nova senha</button>
             </div>
         </div>
     )

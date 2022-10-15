@@ -1,31 +1,27 @@
 import './styles.css';
-import { LoginTypes } from './login.types';
+import { LoginTypes } from '../../utils/login.types';
 import * as React from 'react';
 import { StyledTextField } from '../../components/TextField';
 import { useState } from 'react';
-import UserApi from '../../services/user.api';
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { api } from '../../services/api';
 
 
 export function Login() {
-    const loginApi = new UserApi();
 
-    const [login, setLogin] = useState<LoginTypes>({
+    const navigate = useNavigate();
+
+    const [user, setUser] = useState<LoginTypes>({
         login: '',
         password: '',
         id: '',
         name: '',
     });
 
-    console.log(login)
-
-    const handleLogin = () => {
-        loginApi._login(login)
-            .then((response: any) => {
-                console.log(response.data)
-            }).catch((error) => {
-                console.log(error);
-            })
+    const makeLogin = () => {
+        api.post('auth/login', user)
+            .then((response) => { alert('login successful'); localStorage.setItem("myToken", response.data.token); navigate('/lista') })
+            .catch(() => alert('login failed'));
     }
 
     return (
@@ -33,11 +29,11 @@ export function Login() {
             <div className='login-container'>
 
                 <StyledTextField
-                    label="E-mail"
+                    label="Login"
                     variant="outlined"
                     onChange={(e) =>
-                        setLogin({
-                            ...login,
+                        setUser({
+                            ...user,
                             login: e.target.value
                         })}
                 />
@@ -46,18 +42,14 @@ export function Login() {
                     label="Senha"
                     variant="outlined"
                     onChange={(e) =>
-                        setLogin({
-                            ...login,
+                        setUser({
+                            ...user,
                             password: e.target.value
                         })}
                 />
 
-                {login && (
-                    <Navigate to="/lista" replace={true} />
-                )}
-
                 <div>
-                    <button onClick={() => { handleLogin() }}>Entrar</button>
+                    <button onClick={() => makeLogin()}>Entrar</button>
                 </div>
 
                 <p>Não tem uma conta? <a href="cadastro">Cadastre-se</a></p>

@@ -6,20 +6,17 @@ import { Lista } from './pages/Lista'
 import { Login } from './pages/Login'
 
 function App() {
-
-
   return (
-    <BrowserRouter>
-      <div className='App'>
-        <Header />
-        <Routes>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/lista" element={<Lista/>}/>
-          
-        </Routes>
-      </div>
-    </BrowserRouter>
+      <BrowserRouter>
+        <div className='App'>
+          <Header />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/lista" element={<Lista />} />
 
+          </Routes>
+        </div>
+      </BrowserRouter>
   )
 }
 

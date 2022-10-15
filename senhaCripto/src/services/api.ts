@@ -1,10 +1,8 @@
-import axios, { AxiosInstance } from "axios";
+import axios from 'axios';
 
-export class Api{
-    url = "http://localhost:8080/api";
-
-    axiosClient: AxiosInstance = axios.create({
-        baseURL: this.url,
-        headers: {"Content-type": "application/json"}
-    })
-}
+export const api = axios.create({
+    baseURL: 'http://localhost:8080/',
+    headers: {
+      'Authorization': `${localStorage.getItem("myToken")}`
+    }
+});
